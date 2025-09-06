@@ -24,7 +24,7 @@ if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
 
 # ---------- UI ----------
 st.title("🍽️ Restaurant Billing System")
-menu = pd.read_csv("data/menu.csv")
+menu = pd.read_csv("menu.csv")
 
 # Live Clock
 st.sidebar.markdown(f"⏰ *Current Time:* {datetime.now().strftime('%I:%M:%S %p')}")
@@ -63,7 +63,7 @@ if st.button("Generate Bill") and selected_items:
     st.write(f"GST: ₹{gst:.2f}")
     st.write(f"Total: ₹{total:.2f}")
 
-    conn = sqlite3.connect("db/restaurant.db")
+    conn = sqlite3.connect("restaurant.db")
     cursor = conn.cursor()
     cursor.execute("""
         INSERT INTO orders (customer_type, items, total, gst, discount, payment_method, timestamp)
@@ -75,9 +75,10 @@ if st.button("Generate Bill") and selected_items:
 
     create_pdf_bill(order_id, quantities, total, gst, payment_method)
 
-    with open("data/bill.pdf", "rb") as file:
+    with open("bill.pdf", "rb") as file:
         st.download_button("📄 Download PDF Bill", file, file_name=f"order_{order_id}_bill.pdf")
 
 elif st.button("Generate Bill") and not selected_items:
 
     st.warning("⚠️ Please select at least one item to generate a bill.")
+
