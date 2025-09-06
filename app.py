@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 from datetime import datetime
-from utils.pdf_bill import create_pdf_bill
+from pdf_bill import create_pdf_bill
 
 # ---------- LOGIN ----------
 def login():
@@ -79,4 +79,5 @@ if st.button("Generate Bill") and selected_items:
         st.download_button("📄 Download PDF Bill", file, file_name=f"order_{order_id}_bill.pdf")
 
 elif st.button("Generate Bill") and not selected_items:
+
     st.warning("⚠️ Please select at least one item to generate a bill.")
