@@ -1,6 +1,11 @@
-item_name,category,price,GST
-Idli,Breakfast,30,5
-Dosa,Breakfast,50,5
-Pulao,Lunch,100,12
-Paneer Curry,Lunch,150,12
-Ice Cream,Dessert,60,18
+item_name,price,GST
+Tea,20,5
+Coffee,30,5
+Burger,120,18
+Pizza,220,18
+French Fries,80,12
+Pasta,150,12
+Sandwich,100,5
+Thums Up,40,18
+Water Bottle,20,0
+Ice Cream,70,18
