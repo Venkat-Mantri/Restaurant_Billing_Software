@@ -23,10 +23,20 @@ from pdf_bill import create_pdf_bill
 # ---------- CONFIG ----------
 st.set_page_config(page_title="Restaurant Billing System", page_icon="🍽️", layout="centered")
 
-BASE_DIR = os.path.dirname(__file__)
-DB_PATH = os.path.join(BASE_DIR, "restaurant.db")
-MENU_PATH = os.path.join(BASE_DIR, "menu.csv")
-PDF_PATH = os.path.join(BASE_DIR, "bill.pdf")
+import os
+
+# Always writable – works local & deployed
+HOME_DIR = os.path.expanduser("~")
+
+# Persistent database location
+DB_PATH = os.path.join(HOME_DIR, "restaurant.db")
+
+# menu.csv is part of project, stays inside repo
+MENU_PATH = os.path.join(os.path.dirname(__file__), "menu.csv")
+
+# Save PDF to home dir
+PDF_PATH = os.path.join(HOME_DIR, "bill.pdf")
+
 
 # Ensure DB/schema exist (idempotent)
 create_or_migrate()
@@ -185,4 +195,5 @@ with st.expander("Order History (latest 10)", expanded=False):
     except Exception:
         st.error("Could not load order history.")
         st.text(traceback.format_exc())
+
 
