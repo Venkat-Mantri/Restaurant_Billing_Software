@@ -13,9 +13,9 @@ def login():
     if st.button("Login"):
         if username == "admin" and password == "1234":
             st.session_state['logged_in'] = True
-            st.success("✅ Logged in successfully!")
+            st.success("Logged in successfully!")
         else:
-            st.error("❌ Invalid credentials")
+            st.error("Invalid credentials")
 
 # ---------- SESSION ----------
 if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
@@ -27,7 +27,7 @@ st.title("🍽️ Restaurant Billing System")
 menu = pd.read_csv("menu.csv")
 
 # Live Clock
-st.sidebar.markdown(f"⏰ *Current Time:* {datetime.now().strftime('%I:%M:%S %p')}")
+st.sidebar.markdown(f"*Current Time:* {datetime.now().strftime('%I:%M:%S %p')}")
 
 # Order Type
 order_type = st.radio("Select Order Type:", ["Dine-in", "Takeaway"])
@@ -76,9 +76,10 @@ if st.button("Generate Bill") and selected_items:
     create_pdf_bill(order_id, quantities, total, gst, payment_method)
 
     with open("bill.pdf", "rb") as file:
-        st.download_button("📄 Download PDF Bill", file, file_name=f"order_{order_id}_bill.pdf")
+        st.download_button("Download PDF Bill", file, file_name=f"order_{order_id}_bill.pdf")
 
 elif st.button("Generate Bill") and not selected_items:
 
-    st.warning("⚠️ Please select at least one item to generate a bill.")
+    st.warning("Please select at least one item to generate a bill.")
+
 
