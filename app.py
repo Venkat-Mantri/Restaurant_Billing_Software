@@ -161,22 +161,7 @@ if generate:
     else:
         st.error("PDF file not found after creation.")
 
-# ---------- ORDER HISTORY (read-only) ----------
-with st.expander("Order History (latest 10)", expanded=False):
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        df_orders = pd.read_sql_query(
-            "SELECT id, customer_type, items, subtotal, gst, total, payment_method, timestamp FROM orders ORDER BY id DESC LIMIT 10;",
-            conn
-        )
-        conn.close()
-        if df_orders.empty:
-            st.info("No orders yet.")
-        else:
-            st.dataframe(df_orders)
-    except Exception:
-        st.error("Could not load order history.")
-        st.text(traceback.format_exc())
+
 
 
 
