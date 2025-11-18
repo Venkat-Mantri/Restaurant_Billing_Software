@@ -1,14 +1,3 @@
-# DEBUG: show where the app thinks the DB is and which columns exist
-st.write("DEBUG: DB_PATH =", DB_PATH)
-try:
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-    cur.execute("PRAGMA table_info(orders);")
-    st.write("DEBUG: orders table columns:", cur.fetchall())
-    conn.close()
-except Exception as e:
-    st.write("DEBUG: could not open DB:", str(e))
-
 import streamlit as st
 import pandas as pd
 import sqlite3
@@ -195,5 +184,6 @@ with st.expander("Order History (latest 10)", expanded=False):
     except Exception:
         st.error("Could not load order history.")
         st.text(traceback.format_exc())
+
 
 
